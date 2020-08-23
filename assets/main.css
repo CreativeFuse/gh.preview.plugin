@@ -1,0 +1,33 @@
+#ghent-cfi-view-preview {
+    border: 2px solid #00a9ce;
+    color: #00a9ce;
+    font-family: mr-eaves-xl-modern;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: 15px 0;
+    padding: 0.75rem 2rem;
+    width: 100%;
+}
+
+#ghent-cfi-verify-preview {
+    color: #00a9ce;
+    font-family: mr-eaves-xl-modern;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: 15px 25%;
+    padding: 0.75rem 2rem;
+}
+
+#ghent-preview-approved {
+    margin: 1rem;
+}
+
+#ghent-cfi-view-preview:hover {
+    background-color: #00a9ce;
+    color: #ffffff;
+    cursor: pointer;
+}
