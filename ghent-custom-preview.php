@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Ghent Customizer
+ * Plugin Name:       Ghent Custom Preview
  * Description:       adds customer's logos to the products
  * Version:           0.1.0
  * Requires at least: 5.2
