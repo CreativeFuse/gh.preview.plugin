@@ -194,24 +194,8 @@ add_action( 'wp_ajax_nopriv_pewc_dropzone_remove', 'nv_cfi_ghent_dropzone_remove
 add_action( 'wp_ajax_pewc_dropzone_remove', 'nv_cfi_ghent_dropzone_remove' );
 
 function nv_cfi_ghent_add_cart_item_data( $cart_item_data, $product_id, $variation_id, $quantity=0 ) {
-	error_log( print_r( $cart_item_data, true ) );
-	error_log( print_r( $product_id, true ) );
-	error_log( print_r( $variation_id, true ) );
-    error_log( print_r( $quantity, true ) );
 
     return $cart_item_data;
 }
-
 add_filter( 'woocommerce_add_cart_item_data', 'nv_cfi_ghent_add_cart_item_data', 15, 4 );
 
-function nv_cfi_ghent_pewc_add_cart_data( $item_data, $item, $group_id, $field_id, $uploads ) {
-	error_log( print_r( $item_data, true ) );
-	error_log( print_r( $item, true ) );
-	error_log( print_r( $group_id, true ) );
-	error_log( print_r( $field_id, true ) );
-	error_log( print_r( $uploads, true ) );
-
-	return $item_data;
-
-}
-add_filter( 'pewc_filter_cart_item_data', 'nv_cfi_ghent_pewc_add_cart_data', 10, 5 );
