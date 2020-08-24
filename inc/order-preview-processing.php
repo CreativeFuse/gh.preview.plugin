@@ -194,6 +194,40 @@ add_action( 'wp_ajax_nopriv_pewc_dropzone_remove', 'nv_cfi_ghent_dropzone_remove
 add_action( 'wp_ajax_pewc_dropzone_remove', 'nv_cfi_ghent_dropzone_remove' );
 
 function nv_cfi_ghent_add_cart_item_data( $cart_item_data, $product_id, $variation_id, $quantity=0 ) {
+    if ( ! isset( $cart_item_data['product_extras'] ) || ! isset( $cart_item_data['product_extras']['groups'] ) ) {
+        return $cart_item_data;
+    }
+
+    foreach ( $cart_item_data['product_extras']['groups'] as $group_id => $group ) {
+        foreach ( $group as $field_id => $field ) {
+            if ( isset( $field['files'] ) && 'upload' === $field['type'] ) {
+                $files = $field['files'];
+                foreach ( $files as $ind => $file ) {
+	                $logo_detail    = pathinfo( $file['file'] );
+	                $logo_dir_path  = $logo_detail['dirname'];
+	                $logo_name      = $logo_detail['filename'];
+
+	                $preview_file_pattern = $logo_dir_path . '/preview-*_' . $logo_name . '.pdf';
+	                foreach ( glob( $preview_file_pattern ) as $preview_file ) {
+	                    $upload_dir_details = wp_upload_dir();
+	                    $preview_details    = pathinfo( $preview_file );
+
+        	            $preview = [
+                            'name'    => $preview_details['basename'],
+                            'display' => 'PDF Preview',
+                            'type'    => mime_content_type( $preview_file ),
+        	                'error'   => 0,
+                            'size'    => filesize( $preview_file ),
+                            'url'     => str_replace( $upload_dir_details['basedir'], $upload_dir_details['baseurl'], $preview_file ),
+                            'file'    => $preview_file
+	                    ];
+
+		                $cart_item_data['product_extras']['groups'][$group_id][$field_id]['files'][] = $preview;
+                    }
+                }
+            }
+        }
+    }
 
     return $cart_item_data;
 }
