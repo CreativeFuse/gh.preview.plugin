@@ -20,9 +20,7 @@ function nv_cfi_maybe_create_preview( $upload ) {
         error_log( 'error in upload data' );
         return $upload;
     }
-    // error_log( print_r( $upload, true ) );
-    // nv_cfi_ghent_create_preview( $upload );
-    $upload['error'] = 'test error';
+    nv_cfi_ghent_create_preview( $upload );
 
 	remove_filter( 'wp_handle_upload', 'nv_cfi_maybe_create_preview', PHP_INT_MAX );
 	return $upload;
